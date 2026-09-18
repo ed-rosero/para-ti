@@ -53,32 +53,45 @@ img { -webkit-user-drag: none; }
 .contenedor-relicario { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 40px; }
 .titulo-claro { font-family: var(--font-titulos); font-size: 2.5rem; color: var(--c-morado-intenso); margin-bottom: 10px; font-weight: 600; }
 .subtitulo-claro { font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; color: var(--c-texto-medio); }
-.zona-presion { position: relative; width: 160px; height: 160px; display: flex; justify-content: center; align-items: center; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: rgba(0,0,0,0); touch-action: none; }
+.zona-presion { 
+    position: relative; 
+    width: 160px; 
+    height: 160px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    cursor: pointer; 
+    -webkit-user-select: none; /* Safari/Chrome antiguos */
+    -moz-user-select: none;    /* Firefox antiguo */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Estándar universal */
+    touch-action: none; 
+}
 .anillo-pulso { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--c-morado-intenso); opacity: 0.2; animation: latido-anillo 2s infinite; will-change: transform, opacity; }
 @keyframes latido-anillo { 0% { transform: scale(0.9); opacity: 0.5; } 100% { transform: scale(1.5); opacity: 0; } }
 .zona-presion.cargando .anillo-pulso { animation: none; border-color: var(--c-oro-suave); opacity: 1; transform: scale(1.1); transition: all 0.5s; }
-.corazon-svg-wrapper { position: relative; width: 100px; height: 100px; transition: transform 0.3s; will-change: transform; }
+.corazon-svg-wrapper { position: relative; width: 100px; height: 100px; transition: transform 0.3s; }
 .zona-presion.cargando .corazon-svg-wrapper { transform: scale(0.9); }
 .svg-corazon-trazo { position: absolute; inset: 0; fill: none; stroke: var(--c-morado-intenso); stroke-width: 2; pointer-events: none; }
 .svg-corazon-relleno { position: absolute; inset: 0; fill: var(--c-morado-intenso); clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); will-change: clip-path; transform: translateZ(0); pointer-events: none; }
 
 /* MODAL CARTA */
-#modal-carta { position: fixed; inset: 0; z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.8s var(--curva-fluida), visibility 0.8s; will-change: opacity, visibility; }
+#modal-carta { position: fixed; inset: 0; z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.8s var(--curva-fluida), visibility 0.8s; }
 #modal-carta.modal-visible { opacity: 1; visibility: visible; }
-.modal-overlay { position: absolute; inset: 0; background: rgba(33, 19, 38, 0.7); backdrop-filter: blur(8px); transform: translateZ(0); }
-.carta-blanca-elegante { position: relative; background: #FFFEFA; width: 90%; max-width: 650px; padding: 60px 45px 30px; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.4); border: 1px solid rgba(209, 180, 100, 0.4); text-align: center; transform: translate3d(0, 60px, 0) scale(0.95); transition: transform 1s var(--curva-fluida); display: flex; flex-direction: column; max-height: 90vh; will-change: transform; }
+.modal-overlay { position: absolute; inset: 0; background: rgba(33, 19, 38, 0.7); backdrop-filter: blur(8px); }
+.carta-blanca-elegante { position: relative; background: #FFFEFA; width: 90%; max-width: 650px; padding: 60px 45px 30px; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.4); border: 1px solid rgba(209, 180, 100, 0.4); text-align: center; transform: translate3d(0, 60px, 0) scale(0.95); transition: transform 1s var(--curva-fluida); display: flex; flex-direction: column; max-height: 90vh; }
 #modal-carta.modal-visible .carta-blanca-elegante { transform: translate3d(0, 0, 0) scale(1); }
-.sello-cera { position: absolute; top: -35px; left: 50%; width: 70px; height: 70px; background: linear-gradient(135deg, #E5C384, #B88E52); border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #FFF; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4), inset 0 0 10px rgba(0,0,0,0.1); transform: translateX(-50%) scale(1); animation: latido-sello 2s infinite ease-in-out; will-change: transform, box-shadow; }
-@keyframes latido-sello { 0% { transform: translateX(-50%) scale(1); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); } 50% { transform: translateX(-50%) scale(1.1); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.7); } 100% { transform: translateX(-50%) scale(1); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); } }
+.sello-cera { position: absolute; top: -35px; left: 50%; width: 70px; height: 70px; background: linear-gradient(135deg, #E5C384, #B88E52); border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #FFF; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); transform: translateX(-50%); animation: latido-sello 2s infinite ease-in-out; }
+@keyframes latido-sello { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.1); } }
 .corona-icono { font-size: 26px; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3)); color: #FFF; }
 .saludo-carta { font-family: var(--font-mano); font-size: 2.2rem; color: var(--c-morado-intenso); margin-bottom: 10px; font-weight: 700; flex-shrink: 0; }
-.scroll-interno { overflow-y: auto; overflow-x: hidden; padding-right: 15px; margin-bottom: 15px; flex-grow: 1; overscroll-behavior: contain; }
+.scroll-interno { overflow-y: auto; overflow-x: hidden; padding-right: 15px; margin-bottom: 15px; flex-grow: 1; }
 .scroll-interno::-webkit-scrollbar { width: 5px; }
 .scroll-interno::-webkit-scrollbar-thumb { background: rgba(209, 180, 100, 0.5); border-radius: 3px; }
 .cuerpo-carta p { font-family: var(--font-mano); font-size: 1.65rem; line-height: 1.4; color: var(--c-texto-oscuro); text-align: center; margin-bottom: 15px; font-weight: 500; }
 .firma-carta { font-family: var(--font-mano); font-size: 1.6rem; color: var(--c-texto-oscuro); margin-top: 40px; margin-bottom: 20px; }
 .nombre-firma { font-family: var(--font-decorativa); font-size: 3.2rem; color: var(--c-morado-intenso); display: block; margin-top: 5px; }
-.btn-discreto-dorado { background: transparent; color: var(--c-oro-suave); border: 1px solid var(--c-oro-suave); width: 50px; height: 50px; border-radius: 50%; margin: 0 auto; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: all 0.4s ease; animation: flotar-discreto 2s infinite ease-in-out; flex-shrink: 0; will-change: transform; }
+.btn-discreto-dorado { background: transparent; color: var(--c-oro-suave); border: 1px solid var(--c-oro-suave); width: 50px; height: 50px; border-radius: 50%; margin: 0 auto; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: all 0.4s ease; animation: flotar-discreto 2s infinite ease-in-out; flex-shrink: 0; }
 .btn-discreto-dorado:hover { background: var(--c-oro-suave); color: #fff; transform: scale(1.1); animation-play-state: paused; }
 @keyframes flotar-discreto { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, 6px, 0); } }
 
@@ -90,6 +103,9 @@ img { -webkit-user-drag: none; }
 .animacion-espectacular { font-family: var(--font-titulos); font-size: clamp(3.5rem, 10vw, 7rem); color: var(--c-morado-intenso); line-height: 1.1; font-weight: 700; opacity: 0; filter: blur(20px); transform: translate3d(0, 0, -300px) scale(0.5); animation: nacimiento-magico 2.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards 0.5s; will-change: transform, opacity, filter; }
 @keyframes nacimiento-magico { 0% { opacity: 0; filter: blur(20px); transform: translate3d(0, 0, -300px) scale(0.5); color: #fff; text-shadow: 0 0 100px var(--c-oro-suave); } 50% { opacity: 1; filter: blur(5px); transform: translate3d(0, 0, 50px) scale(1.1); color: var(--c-oro-suave); text-shadow: 0 0 40px var(--c-morado-intenso); } 100% { opacity: 1; filter: blur(0px); transform: translate3d(0, 0, 0) scale(1); color: var(--c-morado-intenso); text-shadow: 0 5px 15px rgba(89, 27, 122, 0.2); } }
 .subtitulo-hero { font-family: var(--font-textos); font-size: 1.3rem; color: var(--c-texto-oscuro); font-weight: 300; letter-spacing: 2px; margin-top: 5px;}
+
+.hero-foto-contenedor { position: relative; width: 220px; height: auto; margin: 30px auto 15px auto; border-radius: 12px; box-shadow: 0 15px 35px rgba(89, 27, 122, 0.2); border: 6px solid var(--c-tarjeta); background-color: var(--c-tarjeta); }
+.hero-foto-contenedor img { width: 100%; height: auto; display: block; border-radius: 4px; }
 .linea-decorativa { width: 2px; height: 80px; background: linear-gradient(to bottom, var(--c-oro-suave), transparent); margin: 40px auto 0; }
 .linea-decorativa.corta { height: 40px; margin: 10px auto 0; }
 
@@ -100,47 +116,111 @@ img { -webkit-user-drag: none; }
 .titulo-capitulo { font-family: var(--font-titulos); font-size: 2.5rem; color: var(--c-morado-intenso); margin-bottom: 20px; font-weight: 600; }
 .parrafo-capitulo { font-size: 1.15rem; line-height: 1.8; color: var(--c-texto-oscuro); }
 
-
 /* ==========================================
-   GALERÍAS (EL PUNTO MEDIO: AUTO + MAX-HEIGHT)
+   NUEVO SISTEMA DE GALERÍAS (CERO RECORTES Y HORIZONTALES GRANDES)
    ========================================== */
 
-/* 1. Portada */
-.hero-foto-contenedor { position: relative; width: 220px; height: auto; margin: 30px auto 15px auto; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 35px rgba(89, 27, 122, 0.2); border: 4px solid var(--c-tarjeta); background-color: var(--c-tarjeta); transform: translateZ(0); }
-.hero-foto-contenedor img { width: 100%; height: auto; max-height: 350px; object-fit: cover; display: block; }
-.marco-brillo { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%); pointer-events: none; }
+/* 1. Mosaico General (Masonry Nativo) */
+.galeria-mosaico {
+    column-count: 2;
+    column-gap: 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
 
-/* 2. Cinta Horizontal (Fija a 350px de altura para no deformar el slider) */
-.galeria-cinta { display: flex; gap: 20px; overflow-x: auto; padding: 20px; scroll-snap-type: x mandatory; scroll-behavior: smooth; max-width: 1200px; margin: 0 auto; -webkit-overflow-scrolling: touch; align-items: center; }
+.item-mosaico {
+    break-inside: avoid;
+    margin-bottom: 15px;
+    background: var(--c-tarjeta);
+    border-radius: 8px;
+    padding: 8px; /* Actúa como el marco de la foto */
+    box-shadow: var(--sombra-suave);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    cursor: zoom-in;
+}
+.item-mosaico.cargado {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* La imagen manda: Cero recortes, se adapta su altura pero tiene un límite prudente */
+.item-mosaico img {
+    width: 100%;
+    height: auto; 
+    max-height: 65vh; /* Evita que queden "muy altas" */
+    object-fit: contain; /* Si choca con el max-height, NO recorta */
+    display: block;
+    border-radius: 4px;
+    transition: transform 0.4s;
+}
+.item-mosaico:hover img { transform: scale(1.03); }
+
+/* La magia para fotos horizontales: Atraviesan las columnas */
+.span-all {
+    column-span: all;
+    width: 100%;
+    margin-bottom: 25px; /* Más espacio al ser grande */
+}
+.span-all img {
+    max-height: 80vh; /* Se les permite ser un poco más grandes */
+}
+
+/* Variante Polaroid */
+.polaroid-modo .item-mosaico {
+    padding: 10px 10px 40px 10px;
+    border-radius: 4px;
+    box-shadow: var(--sombra-fuerte);
+}
+.polaroid-modo .item-mosaico:hover {
+    z-index: 5;
+}
+
+/* 2. Cinta Horizontal (Scroll Adaptativo) */
+.galeria-cinta {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 20px;
+    scroll-snap-type: x mandatory;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center; /* Alinea todas las alturas al centro */
+}
 .galeria-cinta::-webkit-scrollbar { height: 6px; }
 .galeria-cinta::-webkit-scrollbar-thumb { background: rgba(89, 27, 122, 0.2); border-radius: 10px; }
-.item-cinta { height: 350px; flex: 0 0 280px; scroll-snap-align: center; border-radius: 12px; overflow: hidden; box-shadow: var(--sombra-suave); border: 4px solid var(--c-tarjeta); background-color: var(--c-tarjeta); transform: translateZ(0); cursor: zoom-in; }
-.item-cinta img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; will-change: transform; }
-.item-cinta:hover img { transform: scale(1.05); }
 
-/* 3. Cuadrícula (Masonry con max-height inteligente) */
-.galeria-cuadricula { column-count: 3; column-gap: 15px; max-width: 1000px; margin: 0 auto; }
-.item-cuadricula { break-inside: avoid; margin-bottom: 15px; border-radius: 8px; overflow: hidden; box-shadow: var(--sombra-suave); background-color: var(--c-tarjeta); transform: translateZ(0); cursor: zoom-in; }
-/* El truco: Se ajusta natural (auto), pero si es muy alta frena en 400px y recorta el centro (cover) */
-.item-cuadricula img { width: 100%; height: auto; max-height: 400px; object-fit: cover; display: block; transition: transform 0.4s; }
-.item-cuadricula:hover img { transform: scale(1.05); }
-
-/* 4. Polaroid */
-.galeria-polaroid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1000px; margin: 0 auto; padding: 20px; align-items: flex-start; }
-.item-polaroid { width: 220px; height: auto; background: var(--c-tarjeta); padding: 10px 10px 30px 10px; box-shadow: var(--sombra-fuerte); transition: transform 0.4s var(--curva-fluida); will-change: transform; cursor: zoom-in; }
-.item-polaroid img { width: 100%; height: auto; max-height: 280px; object-fit: cover; display: block; }
-.item-polaroid:hover { transform: scale(1.1) rotate(0deg) !important; z-index: 5; }
-
-/* 5. Póster Final */
-.galeria-poster { column-count: 3; column-gap: 15px; max-width: 1200px; margin: 0 auto; }
-.item-poster { break-inside: avoid; margin-bottom: 15px; border-radius: 8px; overflow: hidden; box-shadow: var(--sombra-suave); background: var(--c-tarjeta); cursor: zoom-in; transition: transform 0.4s var(--curva-fluida), box-shadow 0.4s; transform: translateZ(0); }
-.item-poster:hover { transform: translateY(-5px); box-shadow: var(--sombra-fuerte); }
-.item-poster img { width: 100%; height: auto; max-height: 500px; object-fit: cover; display: block; will-change: transform; }
-.pulso-morado { border: 3px solid var(--c-morado-intenso); animation: latido-morado 2s infinite; }
-@keyframes latido-morado { 0% { box-shadow: 0 0 0 0 rgba(89, 27, 122, 0.6); } 70% { box-shadow: 0 0 0 20px rgba(89, 27, 122, 0); } 100% { box-shadow: 0 0 0 0 rgba(89, 27, 122, 0); } }
+.item-cinta {
+    height: 350px;
+    flex-shrink: 0;
+    background: var(--c-tarjeta);
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+    scroll-snap-align: center;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    cursor: zoom-in;
+}
+.item-cinta.cargado {
+    opacity: 1;
+    transform: scale(1);
+}
+.item-cinta img {
+    height: 100%;
+    width: auto;
+    max-width: 85vw; /* Nunca más ancho que la pantalla del celular */
+    object-fit: contain; /* CERO recortes */
+    display: block;
+    border-radius: 4px;
+    transition: transform 0.4s;
+}
+.item-cinta:hover img { transform: scale(1.03); }
 
 /* ==========================================
-   TARJETA VISOR ELEGANTE (SIN FLECHAS VISIBLES)
+   TARJETA VISOR ELEGANTE
    ========================================== */
 #visor-imagenes { position: fixed; inset: 0; z-index: 3000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
 #visor-imagenes.activo { opacity: 1; visibility: visible; }
@@ -155,9 +235,7 @@ img { -webkit-user-drag: none; }
 .cerrar-visor { position: absolute; top: -15px; right: -15px; background: var(--c-morado-intenso); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 22px; cursor: pointer; border: 2px solid var(--c-oro-suave); z-index: 3003; transition: transform 0.3s; }
 .cerrar-visor:hover { transform: scale(1.1); }
 
-/* ==========================================
-   MISCELÁNEOS
-   ========================================== */
+/* MISCELÁNEOS */
 .cita-apoyo { text-align: center; padding: 60px 20px; max-width: 800px; margin: 0 auto; }
 .texto-cita-legible { font-family: var(--font-titulos); font-size: 2rem; font-style: italic; color: var(--c-oro-suave); line-height: 1.6; }
 .footer-final { padding: 80px 20px; text-align: center; background-color: var(--c-fondo); }
@@ -174,21 +252,14 @@ img { -webkit-user-drag: none; }
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .titulo-capitulo { font-size: 2rem; }
-    .galeria-cuadricula { column-count: 2; }
-    .galeria-poster { column-count: 2; }
-    .item-polaroid { width: 40%; }
 }
 @media (max-width: 500px) {
     .carta-blanca-elegante { padding: 50px 25px 30px; }
     .cuerpo-carta p { font-size: 1.3rem; line-height: 1.3; }
     .nombre-firma { font-size: 2.5rem; }
     .animacion-espectacular { font-size: 3rem; }
-    
-    .galeria-cuadricula { column-count: 2; column-gap: 10px; }
-    .item-cuadricula { margin-bottom: 10px; }
-    .item-polaroid { width: 80%; margin: 0 auto; }
-    .galeria-poster { column-count: 2; column-gap: 10px; }
-    .item-poster { margin-bottom: 10px; border-radius: 6px; }
-    .pulso-morado { border-width: 2px; }
+    .galeria-mosaico { column-gap: 10px; padding: 0 10px; }
+    .item-mosaico { margin-bottom: 10px; }
     .tarjeta-visor { padding: 10px; }
+    .item-cinta { height: 280px; }
 }

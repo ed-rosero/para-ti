@@ -19,7 +19,6 @@
         <p id="texto-carga">Preparando una sorpresa para ti...</p>
     </div>
 
-    <!-- FONDOS -->
     <div id="contenedor-corazones"></div>
     <canvas id="lienzo-magico"></canvas>
 
@@ -32,20 +31,21 @@
     <!-- FASE 1: DESBLOQUEO -->
     <main id="fase-bloqueo" class="fase-pantalla activa">
         <div class="cristal-fondo"></div>
-        
         <div class="contenedor-relicario">
             <div class="textos-anticipacion">
                 <h1 class="titulo-claro">Un instante eterno</h1>
                 <p class="subtitulo-claro">Mantén presionado el corazón para descubrirlo</p>
             </div>
-            
-            <div class="zona-presion" id="btn-relicario" aria-label="Mantener presionado">
+            <div class="zona-presion" id="btn-relicario" 
+                 role="button" 
+                 tabindex="0" 
+                 aria-label="Mantén presionado para descubrir tu sorpresa">
                 <div class="anillo-pulso"></div>
                 <div class="corazon-svg-wrapper">
-                    <svg viewBox="0 0 100 100" class="svg-corazon-trazo">
+                    <svg viewBox="0 0 100 100" class="svg-corazon-trazo" aria-hidden="true">
                         <path d="M50,85 C20,60 10,40 10,25 C10,12 22,5 35,5 C43,5 48,9 50,15 C52,9 57,5 65,5 C78,5 90,12 90,25 C90,40 80,60 50,85 Z"/>
                     </svg>
-                    <svg viewBox="0 0 100 100" class="svg-corazon-relleno" id="relleno-fluido">
+                    <svg viewBox="0 0 100 100" class="svg-corazon-relleno" id="relleno-fluido" aria-hidden="true">
                         <path d="M50,85 C20,60 10,40 10,25 C10,12 22,5 35,5 C43,5 48,9 50,15 C52,9 57,5 65,5 C78,5 90,12 90,25 C90,40 80,60 50,85 Z"/>
                     </svg>
                 </div>
@@ -70,15 +70,17 @@
                 </div>
             </div>
             <button id="btn-cerrar-carta" class="btn-discreto-dorado" aria-label="Continuar">
-                <svg viewBox="0 0 24 24" width="28" height="28">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
                     <path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
         </div>
     </div>
 
-    <!-- FASE 2: GALERÍAS NARRATIVAS -->
+    <!-- FASE 2: 10 CAPÍTULOS DE HISTORIA -->
     <main id="fase-experiencia" class="fase-pantalla oculta scroll-suave">
+        
+        <!-- PORTADA HERO -->
         <header class="hero-header">
             <div class="hero-contenido">
                 <span class="sello-fecha revelar-texto">El inicio de una nueva vuelta al sol</span>
@@ -87,13 +89,14 @@
                 </div>
                 <h3 class="subtitulo-hero revelar-fade">A la dueña de todos mis latidos</h3>
                 <div class="hero-foto-contenedor revelar-fade">
-                    <img src="recursos/inicio.jpeg" alt="Mi Reina" loading="eager" id="foto-portada" style="cursor: zoom-in;">
+                    <img src="recursos/inicio.jpeg" alt="Mi Reina" id="foto-portada">
                     <div class="marco-brillo"></div>
                 </div>
                 <div class="linea-decorativa corta revelar-escala"></div>
             </div>
         </header>
 
+        <!-- CAPÍTULO 1 -->
         <section class="capitulo-narrativo revelar-fade">
             <div class="texto-capitulo">
                 <span class="numero-capitulo">I.</span>
@@ -103,35 +106,106 @@
             <div class="galeria-cinta" id="galeria-luz"></div>
         </section>
 
+        <!-- CAPÍTULO 2 -->
         <section class="capitulo-narrativo oscuro revelar-fade">
             <div class="texto-capitulo">
                 <span class="numero-capitulo">II.</span>
                 <h3 class="titulo-capitulo">Nuestra Historia</h3>
                 <p class="parrafo-capitulo">Amo tu sonrisa, pero amo aún más construir motivos para verla todos los días. Eres mi refugio, mi compañera de locuras y mi lugar favorito en el mundo entero.</p>
             </div>
-            <div class="galeria-cuadricula" id="galeria-historia"></div>
+            <div class="galeria-mosaico" id="galeria-historia"></div>
         </section>
 
         <div class="cita-apoyo revelar-fade">
             <p class="texto-cita-legible">"No necesito que nuestra historia sea perfecta, solo necesito que sea eterna y que sea contigo."</p>
         </div>
 
+        <!-- CAPÍTULO 3 -->
         <section class="capitulo-narrativo revelar-fade">
             <div class="texto-capitulo">
                 <span class="numero-capitulo">III.</span>
-                <h3 class="titulo-capitulo">Tu Valentía</h3>
-                <p class="parrafo-capitulo">He visto de qué estás hecha. He visto tu fuerza para sobreponerte a todo y salir más brillante que nunca. Eres una guerrera, y admirarte es la parte más fácil de amarte.</p>
+                <h3 class="titulo-capitulo">Tu Sonrisa Mágica</h3>
+                <p class="parrafo-capitulo">Cada vez que ríes, mi vida entera se ilumina. Esa alegría tuya es el motor que me impulsa a ser mejor. Nunca dejes que nada apague ese brillo que te hace tan especial.</p>
             </div>
-            <div class="galeria-polaroid" id="galeria-valentia"></div>
+            <div class="galeria-mosaico polaroid-modo" id="galeria-sonrisa"></div>
         </section>
 
+        <!-- CAPÍTULO 4 -->
         <section class="capitulo-narrativo oscuro revelar-fade">
             <div class="texto-capitulo">
                 <span class="numero-capitulo">IV.</span>
-                <h3 class="titulo-capitulo">Nuestro Futuro</h3>
-                <p class="parrafo-capitulo">Que este nuevo año te traiga la certeza de que puedes lograrlo todo. Brindo por tus sueños y por todos los infinitos amaneceres que nos faltan por ver juntos.</p>
+                <h3 class="titulo-capitulo">Tu Valentía Inquebrantable</h3>
+                <p class="parrafo-capitulo">He visto de qué estás hecha. He visto tu fuerza para sobreponerte a todo y salir más brillante que nunca. Eres una guerrera, y admirarte es la parte más fácil de amarte.</p>
             </div>
-            <div class="galeria-poster" id="galeria-futuro"></div>
+            <div class="galeria-mosaico" id="galeria-valentia"></div>
+        </section>
+
+        <!-- CAPÍTULO 5 -->
+        <section class="capitulo-narrativo revelar-fade">
+            <div class="texto-capitulo">
+                <span class="numero-capitulo">V.</span>
+                <h3 class="titulo-capitulo">Momentos Inolvidables</h3>
+                <p class="parrafo-capitulo">Cada instante a tu lado se graba a fuego en mi memoria. Los días que parecen normales se vuelven verdaderamente extraordinarios solo porque tú estás en ellos.</p>
+            </div>
+            <div class="galeria-cinta" id="galeria-momentos"></div>
+        </section>
+
+        <div class="cita-apoyo revelar-fade">
+            <p class="texto-cita-legible">"Si sé lo que es el amor, es por ti. Y si sé lo que es la felicidad, es porque la comparto contigo."</p>
+        </div>
+
+        <!-- CAPÍTULO 6 -->
+        <section class="capitulo-narrativo oscuro revelar-fade">
+            <div class="texto-capitulo">
+                <span class="numero-capitulo">VI.</span>
+                <h3 class="titulo-capitulo">Nuestra Complicidad</h3>
+                <p class="parrafo-capitulo">Hablamos con miradas y nos entendemos en el silencio. Somos el mejor equipo, y no hay absolutamente nadie en el mundo con quien prefiera compartir esta aventura.</p>
+            </div>
+            <div class="galeria-mosaico" id="galeria-complicidad"></div>
+        </section>
+
+        <!-- CAPÍTULO 7 -->
+        <section class="capitulo-narrativo revelar-fade">
+            <div class="texto-capitulo">
+                <span class="numero-capitulo">VII.</span>
+                <h3 class="titulo-capitulo">Tu Infinita Ternura</h3>
+                <p class="parrafo-capitulo">En tus abrazos encontré mi hogar, ese lugar seguro donde todo está bien y el mundo exterior deja de importar. Tienes el don de curar cualquier herida con tu dulzura.</p>
+            </div>
+            <div class="galeria-mosaico polaroid-modo" id="galeria-ternura"></div>
+        </section>
+
+        <!-- CAPÍTULO 8 -->
+        <section class="capitulo-narrativo oscuro revelar-fade">
+            <div class="texto-capitulo">
+                <span class="numero-capitulo">VIII.</span>
+                <h3 class="titulo-capitulo">Locuras Juntos</h3>
+                <p class="parrafo-capitulo">La vida es demasiado corta para ser serios todo el tiempo. Gracias por seguirme el paso, por sumarte a mis locuras y por ser mi cómplice favorita en cada carcajada.</p>
+            </div>
+            <div class="galeria-mosaico" id="galeria-locuras"></div>
+        </section>
+
+        <div class="cita-apoyo revelar-fade">
+            <p class="texto-cita-legible">"Que la vida nos perdone las veces que no la vivimos, porque nosotros planeamos vivirla entera."</p>
+        </div>
+
+        <!-- CAPÍTULO 9 -->
+        <section class="capitulo-narrativo revelar-fade">
+            <div class="texto-capitulo">
+                <span class="numero-capitulo">IX.</span>
+                <h3 class="titulo-capitulo">Lluvia de Bendiciones</h3>
+                <p class="parrafo-capitulo">Pido al universo que este nuevo año de vida esté lleno de salud, paz y bendiciones que desborden tu hermoso corazón. Mereces absolutamente todo lo mágico que este mundo tiene para ofrecer.</p>
+            </div>
+            <div class="galeria-cinta" id="galeria-bendiciones"></div>
+        </section>
+
+        <!-- CAPÍTULO 10 -->
+        <section class="capitulo-narrativo oscuro revelar-fade">
+            <div class="texto-capitulo">
+                <span class="numero-capitulo">X.</span>
+                <h3 class="titulo-capitulo">Nuestro Infinito Futuro</h3>
+                <p class="parrafo-capitulo">Brindo por nosotros, por todo lo que hemos sido y por el hermoso imperio que seguiremos construyendo juntos. Que la vida nos permita seguir sumando capítulos a nuestra historia.</p>
+            </div>
+            <div class="galeria-mosaico" id="galeria-futuro"></div>
         </section>
 
         <footer class="footer-final revelar-fade">
@@ -143,10 +217,9 @@
         </footer>
     </main>
 
-    <!-- VISOR INDIVIDUAL (SIN FLECHAS) -->
+    <!-- VISOR INDIVIDUAL (LIGTHBOX) -->
     <div id="visor-imagenes" class="visor-oculto">
         <div class="visor-overlay"></div>
-        
         <div class="tarjeta-visor">
             <button class="cerrar-visor" aria-label="Cerrar">&times;</button>
             <div class="contenedor-img-visor">
