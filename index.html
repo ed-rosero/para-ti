@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Feliz Cumpleaños, Mi Inspiración</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="no-scroll">
+
+    <!-- PANTALLA DE CARGA INICIAL -->
+    <div id="pantalla-carga" class="pantalla-activa">
+        <div class="spinner-elegante"></div>
+        <p id="texto-carga">Preparando una sorpresa para ti...</p>
+    </div>
+
+    <!-- FONDOS MAGICOS -->
+    <div id="contenedor-corazones"></div>
+    <canvas id="lienzo-magico"></canvas>
+
+    <audio id="musica-fondo" loop preload="auto">
+        <source src="recursos/cancion.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="btn-audio" class="control-audio oculto" aria-label="Control de Música">🎵</button>
+
+    <!-- ==========================================
+         FASE 1: DESBLOQUEO
+         ========================================== -->
+    <main id="fase-bloqueo" class="fase-pantalla activa">
+        <div class="cristal-fondo"></div>
+        
+        <div class="contenedor-relicario">
+            <div class="textos-anticipacion">
+                <h1 class="titulo-claro">Un instante eterno</h1>
+                <p class="subtitulo-claro">Mantén presionado el corazón para descubrirlo</p>
+            </div>
+            
+            <div class="zona-presion" id="btn-relicario" aria-label="Mantener presionado">
+                <div class="anillo-pulso"></div>
+                <div class="corazon-svg-wrapper">
+                    <svg viewBox="0 0 100 100" class="svg-corazon-trazo">
+                        <path d="M50,85 C20,60 10,40 10,25 C10,12 22,5 35,5 C43,5 48,9 50,15 C52,9 57,5 65,5 C78,5 90,12 90,25 C90,40 80,60 50,85 Z"/>
+                    </svg>
+                    <svg viewBox="0 0 100 100" class="svg-corazon-relleno" id="relleno-fluido">
+                        <path d="M50,85 C20,60 10,40 10,25 C10,12 22,5 35,5 C43,5 48,9 50,15 C52,9 57,5 65,5 C78,5 90,12 90,25 C90,40 80,60 50,85 Z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==========================================
+         MODAL: CARTA ELEGANTE
+         ========================================== -->
+    <div id="modal-carta" class="modal-oculto">
+        <div class="modal-overlay"></div>
+        <div class="carta-blanca-elegante">
+            <div class="sello-cera"><span class="corona-icono">🤍</span></div>
+            <h2 class="saludo-carta">Para la mujer de mi vida,</h2>
+            <div class="cuerpo-carta scroll-interno">
+                <p>Hoy el universo entero celebra que existes, pero en secreto, soy yo quien da las gracias por el privilegio de coincidir contigo. Eres, sin lugar a dudas, la coincidencia más hermosa de mi vida.</p>
+                <p>He sido testigo de tu fuerza. He visto cómo has enfrentado los días difíciles con una valentía que me deja sin palabras. Admiro tu resiliencia, tu capacidad de levantarte y de transformar las adversidades en escalones para seguir creciendo. Eres mi mayor inspiración.</p>
+                <p>Nunca dudes de la grandeza que llevas dentro ni de lo lejos que puedes llegar. Tienes una luz arrolladora. Sigue persiguiendo esos sueños que tanto anhelas, porque tienes el corazón y la inteligencia para conquistar lo que te propongas.</p>
+                <p>Y mientras lo haces, quiero que sepas que siempre estaré aquí. En primera fila para aplaudir tus victorias, y a tu lado para sostenerte cuando las fuerzas flaqueen. Feliz vuelta al sol, mi reina hermosa.</p>
+                <div class="firma-carta">
+                    Con amor infinito, <br>
+                    <span class="nombre-firma">El amor de tu vida</span>
+                </div>
+            </div>
+            <button id="btn-cerrar-carta" class="btn-discreto-dorado" aria-label="Continuar">
+                <svg viewBox="0 0 24 24" width="28" height="28">
+                    <path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         FASE 2: GALERÍAS NARRATIVAS
+         ========================================== -->
+    <main id="fase-experiencia" class="fase-pantalla oculta scroll-suave">
+        <header class="hero-header">
+            <div class="hero-contenido">
+                <span class="sello-fecha revelar-texto">El inicio de una nueva vuelta al sol</span>
+                <div class="contenedor-titulo-magico">
+                    <h2 class="titulo-gigante animacion-espectacular">Feliz Cumpleaños</h2>
+                </div>
+                <h3 class="subtitulo-hero revelar-fade">A la dueña de todos mis latidos</h3>
+                <div class="hero-foto-contenedor revelar-fade">
+                    <img src="recursos/foto1.jpg" alt="Mi Reina" loading="eager" id="foto-portada" style="cursor: zoom-in;">
+                    <div class="marco-brillo"></div>
+                </div>
+                <div class="linea-decorativa corta revelar-escala"></div>
+            </div>
+        </header>
+
+        <section class="capitulo-narrativo revelar-fade">
+            <div class="texto-capitulo">
+                <span class="numero-capitulo">I.</span>
+                <h3 class="titulo-capitulo">Tu Luz Inconfundible</h3>
+                <p class="parrafo-capitulo">Llegaste para llenar de colores mi mundo. Tienes el don maravilloso de hacer que los momentos simples se conviertan en recuerdos eternos. Donde tú estás, la oscuridad simplemente desaparece.</p>
+            </div>
+            <div class="galeria-cinta" id="galeria-luz"></div>
+        </section>
+
+        <section class="capitulo-narrativo oscuro revelar-fade">
+            <div class="texto-capitulo">
+                <span class="numero-capitulo">II.</span>
+                <h3 class="titulo-capitulo">Nuestra Historia</h3>
+                <p class="parrafo-capitulo">Amo tu sonrisa, pero amo aún más construir motivos para verla todos los días. Eres mi refugio, mi compañera de locuras y mi lugar favorito en el mundo entero.</p>
+            </div>
+            <div class="galeria-cuadricula" id="galeria-historia"></div>
+        </section>
+
+        <div class="cita-apoyo revelar-fade">
+            <p class="texto-cita-legible">"No necesito que nuestra historia sea perfecta, solo necesito que sea eterna y que sea contigo."</p>
+        </div>
+
+        <section class="capitulo-narrativo revelar-fade">
+            <div class="texto-capitulo">
+                <span class="numero-capitulo">III.</span>
+                <h3 class="titulo-capitulo">Tu Valentía</h3>
+                <p class="parrafo-capitulo">He visto de qué estás hecha. He visto tu fuerza para sobreponerte a todo y salir más brillante que nunca. Eres una guerrera, y admirarte es la parte más fácil de amarte.</p>
+            </div>
+            <div class="galeria-polaroid" id="galeria-valentia"></div>
+        </section>
+
+        <section class="capitulo-narrativo oscuro revelar-fade">
+            <div class="texto-capitulo">
+                <span class="numero-capitulo">IV.</span>
+                <h3 class="titulo-capitulo">Nuestro Futuro</h3>
+                <p class="parrafo-capitulo">Que este nuevo año te traiga la certeza de que puedes lograrlo todo. Brindo por tus sueños y por todos los infinitos amaneceres que nos faltan por ver juntos.</p>
+            </div>
+            <div class="galeria-poster" id="galeria-futuro"></div>
+        </section>
+
+        <footer class="footer-final revelar-fade">
+            <div class="mensaje-despedida">
+                <p class="texto-cierre">Te elijo hoy y siempre.</p>
+                <h5 class="firma-legible">El amor de tu vida</h5>
+                <div class="corazones-cierre">🤍 ✨ 🤍</div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- ==========================================
+         NUEVO: VISOR INDIVIDUAL (TARJETA ELEGANTE)
+         ========================================== -->
+    <div id="visor-imagenes" class="visor-oculto">
+        <div class="visor-overlay"></div>
+        
+        <div class="tarjeta-visor">
+            <!-- Botón Cerrar (Arriba a la derecha) -->
+            <button class="cerrar-visor" aria-label="Cerrar">&times;</button>
+            
+            <!-- Botón Anterior -->
+            <button id="btn-prev-visor" class="btn-navegacion-visor prev" aria-label="Anterior">
+                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            
+            <!-- Imagen Central -->
+            <div class="contenedor-img-visor">
+                <img id="img-visor" src="" alt="Vista ampliada">
+            </div>
+            
+            <!-- Botón Siguiente -->
+            <button id="btn-next-visor" class="btn-navegacion-visor next" aria-label="Siguiente">
+                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
