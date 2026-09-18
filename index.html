@@ -13,13 +13,13 @@
 </head>
 <body class="no-scroll">
 
-    <!-- PANTALLA DE CARGA INICIAL -->
+    <!-- PANTALLA DE CARGA -->
     <div id="pantalla-carga" class="pantalla-activa">
         <div class="spinner-elegante"></div>
         <p id="texto-carga">Preparando una sorpresa para ti...</p>
     </div>
 
-    <!-- FONDOS MAGICOS -->
+    <!-- FONDOS -->
     <div id="contenedor-corazones"></div>
     <canvas id="lienzo-magico"></canvas>
 
@@ -29,9 +29,7 @@
 
     <button id="btn-audio" class="control-audio oculto" aria-label="Control de Música">🎵</button>
 
-    <!-- ==========================================
-         FASE 1: DESBLOQUEO
-         ========================================== -->
+    <!-- FASE 1: DESBLOQUEO -->
     <main id="fase-bloqueo" class="fase-pantalla activa">
         <div class="cristal-fondo"></div>
         
@@ -55,9 +53,7 @@
         </div>
     </main>
 
-    <!-- ==========================================
-         MODAL: CARTA ELEGANTE
-         ========================================== -->
+    <!-- MODAL: CARTA -->
     <div id="modal-carta" class="modal-oculto">
         <div class="modal-overlay"></div>
         <div class="carta-blanca-elegante">
@@ -81,9 +77,7 @@
         </div>
     </div>
 
-    <!-- ==========================================
-         FASE 2: GALERÍAS NARRATIVAS
-         ========================================== -->
+    <!-- FASE 2: GALERÍAS NARRATIVAS -->
     <main id="fase-experiencia" class="fase-pantalla oculta scroll-suave">
         <header class="hero-header">
             <div class="hero-contenido">
@@ -93,7 +87,7 @@
                 </div>
                 <h3 class="subtitulo-hero revelar-fade">A la dueña de todos mis latidos</h3>
                 <div class="hero-foto-contenedor revelar-fade">
-                    <img src="recursos/foto1.jpg" alt="Mi Reina" loading="eager" id="foto-portada" style="cursor: zoom-in;">
+                    <img src="recursos/inicio.jpeg" alt="Mi Reina" loading="eager" id="foto-portada" style="cursor: zoom-in;">
                     <div class="marco-brillo"></div>
                 </div>
                 <div class="linea-decorativa corta revelar-escala"></div>
@@ -149,30 +143,15 @@
         </footer>
     </main>
 
-    <!-- ==========================================
-         NUEVO: VISOR INDIVIDUAL (TARJETA ELEGANTE)
-         ========================================== -->
+    <!-- VISOR INDIVIDUAL (SIN FLECHAS) -->
     <div id="visor-imagenes" class="visor-oculto">
         <div class="visor-overlay"></div>
         
         <div class="tarjeta-visor">
-            <!-- Botón Cerrar (Arriba a la derecha) -->
             <button class="cerrar-visor" aria-label="Cerrar">&times;</button>
-            
-            <!-- Botón Anterior -->
-            <button id="btn-prev-visor" class="btn-navegacion-visor prev" aria-label="Anterior">
-                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            
-            <!-- Imagen Central -->
             <div class="contenedor-img-visor">
                 <img id="img-visor" src="" alt="Vista ampliada">
             </div>
-            
-            <!-- Botón Siguiente -->
-            <button id="btn-next-visor" class="btn-navegacion-visor next" aria-label="Siguiente">
-                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
         </div>
     </div>
 

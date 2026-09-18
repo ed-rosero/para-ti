@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const archivosCriticos = [
         'recursos/cancion.mp3',
-        'recursos/foto1.jpg', 
+        'recursos/inicio.jpg', 
         'recursos/foto2.jpg', 
         'recursos/foto3.jpg'
     ];
@@ -69,14 +69,12 @@ document.addEventListener("DOMContentLoaded", () => {
     iniciarCorazonesCSS();
 
     // =====================================================================
-    // 2. NUEVA LÓGICA DEL VISOR (CON NAVEGACIÓN Y SWIPE)
+    // 2. LÓGICA DEL VISOR (SWIPE Y TECLADO, SIN FLECHAS VISIBLES)
     // =====================================================================
     const visor = document.getElementById('visor-imagenes');
     const imgVisor = document.getElementById('img-visor');
     const btnCerrarVisor = document.querySelector('.cerrar-visor');
     const overlayVisor = document.querySelector('.visor-overlay');
-    const btnPrev = document.getElementById('btn-prev-visor');
-    const btnNext = document.getElementById('btn-next-visor');
     
     let visorImagenesActuales = [];
     let indiceActual = 0;
@@ -91,18 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function actualizarVisor() {
         const img = visorImagenesActuales[indiceActual];
-        // Determinar de dónde sacar la fuente (si ya cargó usa src, si no, dataset.src)
         const rutaImagen = (img.src && img.src.indexOf('data:image') === -1) ? img.src : img.dataset.src;
         
-        imgVisor.style.opacity = 0; // Efecto de transición
+        imgVisor.style.opacity = 0;
         setTimeout(() => {
             imgVisor.src = rutaImagen;
             imgVisor.style.opacity = 1;
         }, 150);
-        
-        // Mostrar/Ocultar botones si estamos en el borde de la lista
-        btnPrev.style.display = (indiceActual > 0) ? 'flex' : 'none';
-        btnNext.style.display = (indiceActual < visorImagenesActuales.length - 1) ? 'flex' : 'none';
     }
 
     function cerrarVisor() {
@@ -111,19 +104,22 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => { imgVisor.src = ""; }, 300);
     }
 
-    // Eventos de botones
+    function avanzarVisor() {
+        if (indiceActual < visorImagenesActuales.length - 1) { 
+            indiceActual++; actualizarVisor(); 
+        }
+    }
+
+    function retrocederVisor() {
+        if (indiceActual > 0) { 
+            indiceActual--; actualizarVisor(); 
+        }
+    }
+
     if (btnCerrarVisor) btnCerrarVisor.addEventListener('click', cerrarVisor);
     if (overlayVisor) overlayVisor.addEventListener('click', cerrarVisor);
     
-    if (btnPrev) btnPrev.addEventListener('click', () => {
-        if (indiceActual > 0) { indiceActual--; actualizarVisor(); }
-    });
-    
-    if (btnNext) btnNext.addEventListener('click', () => {
-        if (indiceActual < visorImagenesActuales.length - 1) { indiceActual++; actualizarVisor(); }
-    });
-
-    // Soporte para deslizar (Swipe) en celulares
+    // Soporte para deslizar (Swipe) en móviles
     let touchstartX = 0;
     let touchendX = 0;
     const tarjetaVisor = document.querySelector('.tarjeta-visor');
@@ -135,13 +131,22 @@ document.addEventListener("DOMContentLoaded", () => {
         
         tarjetaVisor.addEventListener('touchend', e => {
             touchendX = e.changedTouches[0].screenX;
-            if (touchendX < touchstartX - 50 && btnNext.style.display !== 'none') btnNext.click(); // Deslizó Izq
-            if (touchendX > touchstartX + 50 && btnPrev.style.display !== 'none') btnPrev.click(); // Deslizó Der
+            if (touchendX < touchstartX - 50) avanzarVisor();    // Deslizó Izquierda -> Siguiente
+            if (touchendX > touchstartX + 50) retrocederVisor(); // Deslizó Derecha -> Anterior
         }, {passive: true});
     }
 
+    // Soporte para Teclado en PC
+    document.addEventListener('keydown', e => {
+        if (visor.classList.contains('activo')) {
+            if (e.key === 'ArrowRight') avanzarVisor();
+            if (e.key === 'ArrowLeft') retrocederVisor();
+            if (e.key === 'Escape') cerrarVisor();
+        }
+    });
+
     // =====================================================================
-    // 3. GENERADOR DE GALERÍAS (CONECTADAS AL NUEVO VISOR)
+    // 3. GENERADOR DE GALERÍAS
     // =====================================================================
     function crearImagen(index) {
         const img = document.createElement('img');
@@ -150,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
         img.className = 'lazy-foto';
         img.style.cursor = 'zoom-in';
         
-        // Al hacer clic, buscamos a qué grupo pertenece la foto para poder navegar
         img.addEventListener('click', function() { 
             const contenedorPadre = this.closest('[id^="galeria-"]');
             if (contenedorPadre) {
@@ -158,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const posicion = todasLasFotosDelGrupo.indexOf(this);
                 abrirVisorGrupo(todasLasFotosDelGrupo, posicion);
             } else {
-                abrirVisorGrupo([this], 0); // Falla segura
+                abrirVisorGrupo([this], 0);
             }
         });
         
@@ -166,7 +170,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return img;
     }
 
-    // Configurar Portada Solitaria
     const fotoPortada = document.getElementById('foto-portada');
     if(fotoPortada) {
         fotoPortada.addEventListener('click', function() { abrirVisorGrupo([this], 0); });

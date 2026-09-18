@@ -24,7 +24,7 @@ body { background-color: var(--c-fondo); color: var(--c-texto-medio); font-famil
 body.no-scroll { overflow: hidden; height: 100vh; }
 img { -webkit-user-drag: none; }
 
-/* PANTALLA DE CARGA */
+/* PANTALLA DE CARGA Y FONDOS */
 #pantalla-carga { position: fixed; inset: 0; background: var(--c-fondo); z-index: 9999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 1s var(--curva-fluida), visibility 1s; }
 #pantalla-carga.oculto { opacity: 0; visibility: hidden; }
 .spinner-elegante { width: 60px; height: 60px; margin-bottom: 25px; border: 3px solid rgba(209, 180, 100, 0.2); border-top-color: var(--c-oro-suave); border-radius: 50%; animation: girar-spinner 1s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
@@ -32,7 +32,6 @@ img { -webkit-user-drag: none; }
 #texto-carga { font-family: var(--font-titulos); color: var(--c-morado-intenso); font-size: 1.5rem; font-style: italic; animation: pulso-texto 2s infinite alternate; }
 @keyframes pulso-texto { 0% { opacity: 0.6; } 100% { opacity: 1; } }
 
-/* FONDOS */
 #lienzo-magico { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; pointer-events: none; transform: translateZ(0); }
 #contenedor-corazones { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; overflow: hidden; transform: translateZ(0); }
 .corazon-flotante-css { position: absolute; bottom: -10vh; color: rgba(209, 180, 100, 0.15); font-size: 24px; animation: flotar-corazon linear infinite; will-change: transform, opacity; }
@@ -72,7 +71,6 @@ img { -webkit-user-drag: none; }
 .sello-cera { position: absolute; top: -35px; left: 50%; width: 70px; height: 70px; background: linear-gradient(135deg, #E5C384, #B88E52); border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #FFF; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4), inset 0 0 10px rgba(0,0,0,0.1); transform: translateX(-50%) scale(1); animation: latido-sello 2s infinite ease-in-out; will-change: transform, box-shadow; }
 @keyframes latido-sello { 0% { transform: translateX(-50%) scale(1); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); } 50% { transform: translateX(-50%) scale(1.1); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.7); } 100% { transform: translateX(-50%) scale(1); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); } }
 .corona-icono { font-size: 26px; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3)); color: #FFF; }
-
 .saludo-carta { font-family: var(--font-mano); font-size: 2.2rem; color: var(--c-morado-intenso); margin-bottom: 10px; font-weight: 700; flex-shrink: 0; }
 .scroll-interno { overflow-y: auto; overflow-x: hidden; padding-right: 15px; margin-bottom: 15px; flex-grow: 1; overscroll-behavior: contain; }
 .scroll-interno::-webkit-scrollbar { width: 5px; }
@@ -84,7 +82,7 @@ img { -webkit-user-drag: none; }
 .btn-discreto-dorado:hover { background: var(--c-oro-suave); color: #fff; transform: scale(1.1); animation-play-state: paused; }
 @keyframes flotar-discreto { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(0, 6px, 0); } }
 
-/* HERO Y CAPÍTULOS */
+/* HERO Y TEXTOS */
 .hero-header { min-height: 95vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 5vh 20px; }
 .hero-contenido { display: flex; flex-direction: column; align-items: center; width: 100%; }
 .sello-fecha { font-size: 1rem; text-transform: uppercase; letter-spacing: 4px; color: var(--c-oro-suave); font-weight: 600; display: block; margin-bottom: 10px; }
@@ -92,9 +90,6 @@ img { -webkit-user-drag: none; }
 .animacion-espectacular { font-family: var(--font-titulos); font-size: clamp(3.5rem, 10vw, 7rem); color: var(--c-morado-intenso); line-height: 1.1; font-weight: 700; opacity: 0; filter: blur(20px); transform: translate3d(0, 0, -300px) scale(0.5); animation: nacimiento-magico 2.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards 0.5s; will-change: transform, opacity, filter; }
 @keyframes nacimiento-magico { 0% { opacity: 0; filter: blur(20px); transform: translate3d(0, 0, -300px) scale(0.5); color: #fff; text-shadow: 0 0 100px var(--c-oro-suave); } 50% { opacity: 1; filter: blur(5px); transform: translate3d(0, 0, 50px) scale(1.1); color: var(--c-oro-suave); text-shadow: 0 0 40px var(--c-morado-intenso); } 100% { opacity: 1; filter: blur(0px); transform: translate3d(0, 0, 0) scale(1); color: var(--c-morado-intenso); text-shadow: 0 5px 15px rgba(89, 27, 122, 0.2); } }
 .subtitulo-hero { font-family: var(--font-textos); font-size: 1.3rem; color: var(--c-texto-oscuro); font-weight: 300; letter-spacing: 2px; margin-top: 5px;}
-.hero-foto-contenedor { position: relative; width: 170px; height: 220px; margin: 30px auto 15px auto; border-radius: 100px 100px 15px 15px; overflow: hidden; box-shadow: 0 15px 35px rgba(89, 27, 122, 0.2); border: 4px solid var(--c-tarjeta); background-color: var(--c-tarjeta); transform: translateZ(0); }
-.hero-foto-contenedor img { width: 100%; height: 100%; object-fit: cover; }
-.marco-brillo { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%); pointer-events: none; }
 .linea-decorativa { width: 2px; height: 80px; background: linear-gradient(to bottom, var(--c-oro-suave), transparent); margin: 40px auto 0; }
 .linea-decorativa.corta { height: 40px; margin: 10px auto 0; }
 
@@ -105,108 +100,64 @@ img { -webkit-user-drag: none; }
 .titulo-capitulo { font-family: var(--font-titulos); font-size: 2.5rem; color: var(--c-morado-intenso); margin-bottom: 20px; font-weight: 600; }
 .parrafo-capitulo { font-size: 1.15rem; line-height: 1.8; color: var(--c-texto-oscuro); }
 
-/* GALERÍAS */
-.galeria-cinta { display: flex; gap: 20px; overflow-x: auto; padding: 20px; scroll-snap-type: x mandatory; scroll-behavior: smooth; max-width: 1200px; margin: 0 auto; -webkit-overflow-scrolling: touch; }
+
+/* ==========================================
+   GALERÍAS (EL PUNTO MEDIO: AUTO + MAX-HEIGHT)
+   ========================================== */
+
+/* 1. Portada */
+.hero-foto-contenedor { position: relative; width: 220px; height: auto; margin: 30px auto 15px auto; border-radius: 15px; overflow: hidden; box-shadow: 0 15px 35px rgba(89, 27, 122, 0.2); border: 4px solid var(--c-tarjeta); background-color: var(--c-tarjeta); transform: translateZ(0); }
+.hero-foto-contenedor img { width: 100%; height: auto; max-height: 350px; object-fit: cover; display: block; }
+.marco-brillo { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%); pointer-events: none; }
+
+/* 2. Cinta Horizontal (Fija a 350px de altura para no deformar el slider) */
+.galeria-cinta { display: flex; gap: 20px; overflow-x: auto; padding: 20px; scroll-snap-type: x mandatory; scroll-behavior: smooth; max-width: 1200px; margin: 0 auto; -webkit-overflow-scrolling: touch; align-items: center; }
 .galeria-cinta::-webkit-scrollbar { height: 6px; }
 .galeria-cinta::-webkit-scrollbar-thumb { background: rgba(89, 27, 122, 0.2); border-radius: 10px; }
-.item-cinta { flex: 0 0 280px; height: 350px; scroll-snap-align: center; border-radius: 12px; overflow: hidden; box-shadow: var(--sombra-suave); border: 4px solid var(--c-tarjeta); transform: translateZ(0); cursor: zoom-in; }
+.item-cinta { height: 350px; flex: 0 0 280px; scroll-snap-align: center; border-radius: 12px; overflow: hidden; box-shadow: var(--sombra-suave); border: 4px solid var(--c-tarjeta); background-color: var(--c-tarjeta); transform: translateZ(0); cursor: zoom-in; }
 .item-cinta img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; will-change: transform; }
 .item-cinta:hover img { transform: scale(1.05); }
 
-.galeria-cuadricula { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); grid-auto-rows: 250px; gap: 15px; max-width: 1000px; margin: 0 auto; }
-.item-cuadricula { border-radius: 8px; overflow: hidden; box-shadow: var(--sombra-suave); transform: translateZ(0); cursor: zoom-in; }
-.item-cuadricula img { width: 100%; height: 100%; object-fit: cover; }
-.item-cuadricula.destacado { grid-row: span 2; grid-column: span 2; }
+/* 3. Cuadrícula (Masonry con max-height inteligente) */
+.galeria-cuadricula { column-count: 3; column-gap: 15px; max-width: 1000px; margin: 0 auto; }
+.item-cuadricula { break-inside: avoid; margin-bottom: 15px; border-radius: 8px; overflow: hidden; box-shadow: var(--sombra-suave); background-color: var(--c-tarjeta); transform: translateZ(0); cursor: zoom-in; }
+/* El truco: Se ajusta natural (auto), pero si es muy alta frena en 400px y recorta el centro (cover) */
+.item-cuadricula img { width: 100%; height: auto; max-height: 400px; object-fit: cover; display: block; transition: transform 0.4s; }
+.item-cuadricula:hover img { transform: scale(1.05); }
 
-.galeria-polaroid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1000px; margin: 0 auto; padding: 20px; }
-.item-polaroid { width: 200px; background: var(--c-tarjeta); padding: 10px 10px 30px 10px; box-shadow: var(--sombra-fuerte); transition: transform 0.4s var(--curva-fluida); will-change: transform; cursor: zoom-in; }
-.item-polaroid img { width: 100%; height: 220px; object-fit: cover; }
+/* 4. Polaroid */
+.galeria-polaroid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; max-width: 1000px; margin: 0 auto; padding: 20px; align-items: flex-start; }
+.item-polaroid { width: 220px; height: auto; background: var(--c-tarjeta); padding: 10px 10px 30px 10px; box-shadow: var(--sombra-fuerte); transition: transform 0.4s var(--curva-fluida); will-change: transform; cursor: zoom-in; }
+.item-polaroid img { width: 100%; height: auto; max-height: 280px; object-fit: cover; display: block; }
 .item-polaroid:hover { transform: scale(1.1) rotate(0deg) !important; z-index: 5; }
 
+/* 5. Póster Final */
 .galeria-poster { column-count: 3; column-gap: 15px; max-width: 1200px; margin: 0 auto; }
 .item-poster { break-inside: avoid; margin-bottom: 15px; border-radius: 8px; overflow: hidden; box-shadow: var(--sombra-suave); background: var(--c-tarjeta); cursor: zoom-in; transition: transform 0.4s var(--curva-fluida), box-shadow 0.4s; transform: translateZ(0); }
 .item-poster:hover { transform: translateY(-5px); box-shadow: var(--sombra-fuerte); }
-.item-poster img { width: 100%; height: auto; display: block; will-change: transform; }
+.item-poster img { width: 100%; height: auto; max-height: 500px; object-fit: cover; display: block; will-change: transform; }
 .pulso-morado { border: 3px solid var(--c-morado-intenso); animation: latido-morado 2s infinite; }
 @keyframes latido-morado { 0% { box-shadow: 0 0 0 0 rgba(89, 27, 122, 0.6); } 70% { box-shadow: 0 0 0 20px rgba(89, 27, 122, 0); } 100% { box-shadow: 0 0 0 0 rgba(89, 27, 122, 0); } }
 
-
-/* ==========================================================================
-   NUEVA TARJETA VISOR ELEGANTE (LIGHTBOX)
-   ========================================================================== */
-#visor-imagenes { 
-    position: fixed; inset: 0; z-index: 3000; 
-    display: flex; justify-content: center; align-items: center; 
-    opacity: 0; visibility: hidden; transition: all 0.3s ease; 
-}
+/* ==========================================
+   TARJETA VISOR ELEGANTE (SIN FLECHAS VISIBLES)
+   ========================================== */
+#visor-imagenes { position: fixed; inset: 0; z-index: 3000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
 #visor-imagenes.activo { opacity: 1; visibility: visible; }
 .visor-overlay { position: absolute; inset: 0; background: rgba(26, 10, 33, 0.9); backdrop-filter: blur(5px); }
 
-.tarjeta-visor {
-    position: relative;
-    background: var(--c-tarjeta);
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-    border: 1px solid var(--c-oro-suave);
-    max-width: 90vw;
-    max-height: 85vh;
-    display: flex; align-items: center; justify-content: center;
-    z-index: 3001;
-    transform: scale(0.8);
-    transition: transform 0.4s var(--curva-fluida);
-}
+.tarjeta-visor { position: relative; background: var(--c-tarjeta); padding: 15px; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); border: 1px solid var(--c-oro-suave); max-width: 90vw; max-height: 85vh; display: flex; align-items: center; justify-content: center; z-index: 3001; transform: scale(0.8); transition: transform 0.4s var(--curva-fluida); }
 #visor-imagenes.activo .tarjeta-visor { transform: scale(1); }
 
-.contenedor-img-visor {
-    display: flex; justify-content: center; align-items: center;
-}
-#img-visor { 
-    max-width: 100%; 
-    max-height: 75vh; 
-    border-radius: 8px; 
-    object-fit: contain; 
-    transition: opacity 0.3s;
-}
+.contenedor-img-visor { display: flex; justify-content: center; align-items: center; }
+#img-visor { max-width: 100%; max-height: 75vh; border-radius: 8px; object-fit: contain; transition: opacity 0.3s; }
 
-/* Botones de Navegación */
-.btn-navegacion-visor {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--c-tarjeta);
-    border: 1px solid var(--c-oro-suave);
-    color: var(--c-morado-intenso);
-    width: 45px; height: 45px;
-    border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    cursor: pointer;
-    box-shadow: var(--sombra-fuerte);
-    transition: all 0.3s;
-    z-index: 3002;
-}
-.btn-navegacion-visor:hover { background: var(--c-oro-suave); color: white; transform: translateY(-50%) scale(1.1); }
-.btn-navegacion-visor.prev { left: -20px; }
-.btn-navegacion-visor.next { right: -20px; }
-.btn-navegacion-visor:disabled { opacity: 0.3; cursor: not-allowed; }
-
-/* Botón Cerrar (Arriba derecha) */
-.cerrar-visor {
-    position: absolute;
-    top: -15px; right: -15px;
-    background: var(--c-morado-intenso);
-    color: white;
-    width: 35px; height: 35px;
-    border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    font-size: 22px; cursor: pointer;
-    border: 2px solid var(--c-oro-suave);
-    z-index: 3003;
-    transition: transform 0.3s;
-}
+.cerrar-visor { position: absolute; top: -15px; right: -15px; background: var(--c-morado-intenso); color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 22px; cursor: pointer; border: 2px solid var(--c-oro-suave); z-index: 3003; transition: transform 0.3s; }
 .cerrar-visor:hover { transform: scale(1.1); }
 
-/* MISCELÁNEOS */
+/* ==========================================
+   MISCELÁNEOS
+   ========================================== */
 .cita-apoyo { text-align: center; padding: 60px 20px; max-width: 800px; margin: 0 auto; }
 .texto-cita-legible { font-family: var(--font-titulos); font-size: 2rem; font-style: italic; color: var(--c-oro-suave); line-height: 1.6; }
 .footer-final { padding: 80px 20px; text-align: center; background-color: var(--c-fondo); }
@@ -223,24 +174,21 @@ img { -webkit-user-drag: none; }
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .titulo-capitulo { font-size: 2rem; }
-    .galeria-cuadricula { grid-template-columns: repeat(2, 1fr); }
-    .item-cuadricula.destacado { grid-row: span 1; grid-column: span 2; }
-    .item-polaroid { width: 40%; }
+    .galeria-cuadricula { column-count: 2; }
     .galeria-poster { column-count: 2; }
+    .item-polaroid { width: 40%; }
 }
 @media (max-width: 500px) {
     .carta-blanca-elegante { padding: 50px 25px 30px; }
     .cuerpo-carta p { font-size: 1.3rem; line-height: 1.3; }
     .nombre-firma { font-size: 2.5rem; }
     .animacion-espectacular { font-size: 3rem; }
+    
+    .galeria-cuadricula { column-count: 2; column-gap: 10px; }
+    .item-cuadricula { margin-bottom: 10px; }
     .item-polaroid { width: 80%; margin: 0 auto; }
     .galeria-poster { column-count: 2; column-gap: 10px; }
     .item-poster { margin-bottom: 10px; border-radius: 6px; }
     .pulso-morado { border-width: 2px; }
-    
-    /* Adaptaciones del visor para móvil */
-    .btn-navegacion-visor { width: 35px; height: 35px; }
-    .btn-navegacion-visor.prev { left: -10px; }
-    .btn-navegacion-visor.next { right: -10px; }
     .tarjeta-visor { padding: 10px; }
 }
